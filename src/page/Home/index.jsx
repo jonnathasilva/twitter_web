@@ -74,7 +74,7 @@ const Twitter = ({ name, username, avatar, children }) => {
         <img src={`./imgs/${avatar}`} alt="avatar" />
       </div>
 
-      <div className="space-y-1">
+      <div className="space-y-1 w-full  break-all">
         <span className="font-bold text-sm">{name}</span>{" "}
         <span className="text-sm text-silver">@{username}</span>
         <p>{children}</p>
