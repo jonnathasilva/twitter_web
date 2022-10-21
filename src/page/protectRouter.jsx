@@ -9,7 +9,7 @@ export const ProtectRoute = ({ children }) => {
   axios({
     method: "get",
     baseURL: import.meta.env.VITE_URL,
-    url: "/routeauth",
+    url: "/auth",
     headers: { authorization: `Bearer ${token}` },
   }).catch(() => {
     return navigate("/login");
