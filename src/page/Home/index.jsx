@@ -1,9 +1,29 @@
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect } from "react";
+import { useFormik } from "formik";
 import axios from "axios";
 
-const TwitterForm = () => {
-  const [text, setText] = useState("");
+const TwitterForm = ({ onSuccess }) => {
+  const formik = useFormik({
+    onSubmit: async (values, form) => {
+      await axios({
+        method: "post",
+        baseURL: import.meta.env.VITE_URL,
+        url: "/tweets",
+        data: { text: values.text },
+        headers: { authorization: `Bearer ${token}` },
+      });
+
+      form.setFieldValue("text", "");
+      onSuccess();
+    },
+    initialValues: {
+      text: "",
+    },
+  });
+
+  const token = useState(localStorage.getItem("token"))[0];
+
   const MAX_TWEET_CHAR = 140;
 
   return (
@@ -13,23 +33,31 @@ const TwitterForm = () => {
         <h1 className="font-bold text-xl">Página Inicial</h1>
       </div>
 
-      <form className="pl-12 text-lg flex flex-col">
+      <form
+        onSubmit={formik.handleSubmit}
+        className="pl-12 text-lg flex flex-col"
+      >
         <textarea
           name="text"
-          value={text}
+          value={formik.values.text}
           placeholder="O que está acontecendo?"
           className="bg-transparent outline-none disabled:opacity-50"
-          onChange={(e) => setText(e.target.value)}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          disabled={formik.isSubmitting}
         />
 
         <div className="flex justify-end items-center space-x-3">
           <span className="text-sm">
-            <span>{text.length}</span> /{" "}
+            <span>{formik.values.text.length}</span> /{" "}
             <span className="text-birdblue">{MAX_TWEET_CHAR}</span>
           </span>
           <button
+            type="submit"
             className="bg-birdblue px-5 py-2 rounded-full disabled:opacity-50"
-            disabled={text.length >= MAX_TWEET_CHAR}
+            disabled={
+              formik.values.text.length >= MAX_TWEET_CHAR || formik.isSubmitting
+            }
           >
             Tweetar
           </button>
@@ -81,7 +109,7 @@ export const Home = () => {
 
   return (
     <>
-      <TwitterForm />
+      <TwitterForm onSuccess={getData} />
       <div>
         {data.length &&
           data.map((tweet) => (
