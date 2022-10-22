@@ -49,7 +49,7 @@ export const Signup = () => {
   return (
     <div className="h-full flex justify-center">
       <div className="hidden lg:bg-birdblue lg:flex lg:justify-center lg:items-center lg:flex-1">
-        <img src="./imgs/logo.svg" alt="logo" />
+        <img src="./imgs/logo.svg" alt="logo" className="w-96" />
       </div>
 
       <div className="flex flex-1  justify-center items-center p-12 space-y-6">
