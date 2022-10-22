@@ -52,7 +52,7 @@ export const Signup = () => {
         <img src="./imgs/logo.svg" alt="logo" />
       </div>
 
-      <div className="fflex flex-1  justify-center items-center p-12 space-y-6">
+      <div className="flex flex-1  justify-center items-center p-12 space-y-6">
         <div className="max-w-md flex-1">
           <h1 className="text-3xl">Crie sua conta</h1>
 
