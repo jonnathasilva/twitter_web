@@ -111,17 +111,18 @@ export const Home = () => {
     <>
       <TwitterForm onSuccess={getData} />
       <div>
-        {data.length &&
-          data.map((tweet) => (
-            <Twitter
-              key={tweet.id}
-              name={tweet.user.name}
-              username={tweet.user.username}
-              avatar="avatar.png"
-            >
-              {tweet.text}
-            </Twitter>
-          ))}
+        {data.length > 0
+          ? data.map((tweet) => (
+              <Twitter
+                key={tweet.id}
+                name={tweet.user.name}
+                username={tweet.user.username}
+                avatar="avatar.png"
+              >
+                {tweet.text}
+              </Twitter>
+            ))
+          : ""}
       </div>
     </>
   );

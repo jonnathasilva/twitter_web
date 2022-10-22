@@ -39,7 +39,9 @@ export const Login = () => {
 
   return (
     <div className="h-full flex justify-center">
-      <div className="bg-birdblue lg:flex-1">a</div>
+      <div className="hidden lg:bg-birdblue lg:flex lg:justify-center lg:items-center lg:flex-1">
+        <img src="./imgs/logo.svg" alt="logo" />
+      </div>
       <div className="flex flex-1  justify-center items-center p-12 space-y-6">
         <div className="max-w-md flex-1">
           <h1 className="text-3xl">Acesse sua conta</h1>
@@ -89,7 +91,7 @@ export const Login = () => {
           </form>
 
           <span className="text-sm text-silver text-center">
-            Não tem uma conta?
+            Não tem uma conta?{" "}
             <Link to="/signup" className="text-birdblue">
               Inscreva-se
             </Link>

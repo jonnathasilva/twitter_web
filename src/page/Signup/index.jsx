@@ -47,85 +47,99 @@ export const Signup = () => {
   });
 
   return (
-    <div className="flex flex-col justify-center p-12 h-full space-y-6">
-      <h1 className="text-3xl">Crie sua conta</h1>
+    <div className="h-full flex justify-center">
+      <div className="hidden lg:bg-birdblue lg:flex lg:justify-center lg:items-center lg:flex-1">
+        <img src="./imgs/logo.svg" alt="logo" />
+      </div>
 
-      <form onSubmit={formik.handleSubmit} className="space-y-6">
-        <div className="space-y-2">
-          <Input
-            type="text"
-            name="name"
-            placeholder="Nome"
-            value={formik.values.name}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            disabled={formik.isSubmitting}
-          />
-          {formik.touched.name && formik.errors.name && (
-            <div className="text-red-500 text-sm">{formik.errors.name}</div>
-          )}
+      <div className="fflex flex-1  justify-center items-center p-12 space-y-6">
+        <div className="max-w-md flex-1">
+          <h1 className="text-3xl">Crie sua conta</h1>
+
+          <form onSubmit={formik.handleSubmit} className="space-y-6">
+            <div className="space-y-2">
+              <Input
+                type="text"
+                name="name"
+                placeholder="Nome"
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                disabled={formik.isSubmitting}
+              />
+              {formik.touched.name && formik.errors.name && (
+                <div className="text-red-500 text-sm">{formik.errors.name}</div>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Input
+                type="text"
+                name="username"
+                placeholder="Nome de Usuário"
+                value={formik.values.username}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                disabled={formik.isSubmitting}
+              />
+              {formik.touched.username && formik.errors.username && (
+                <div className="text-red-500 text-sm">
+                  {formik.errors.username}
+                </div>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Input
+                type="email"
+                name="email"
+                placeholder="E-mail"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                disabled={formik.isSubmitting}
+              />
+              {formik.touched.email && formik.errors.email && (
+                <div className="text-red-500 text-sm">
+                  {formik.errors.email}
+                </div>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Input
+                type="password"
+                name="password"
+                placeholder="Senha"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                disabled={formik.isSubmitting}
+              />
+              {formik.touched.password && formik.errors.password && (
+                <div className="text-red-500 text-sm">
+                  {formik.errors.password}
+                </div>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="bg-birdblue py-4 rounded-full disabled:opacity-50 w-full text-lg"
+              disabled={formik.isSubmitting || !formik.isValid}
+            >
+              {formik.isSubmitting ? "Enviando..." : "cadastrar"}
+            </button>
+          </form>
+
+          <span className="text-sm text-silver text-center">
+            Já tem uma conta?{" "}
+            <Link to="/login" className="text-birdblue">
+              Acesse
+            </Link>
+          </span>
         </div>
-
-        <div className="space-y-2">
-          <Input
-            type="text"
-            name="username"
-            placeholder="Nome de Usuário"
-            value={formik.values.username}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            disabled={formik.isSubmitting}
-          />
-          {formik.touched.username && formik.errors.username && (
-            <div className="text-red-500 text-sm">{formik.errors.username}</div>
-          )}
-        </div>
-
-        <div className="space-y-2">
-          <Input
-            type="email"
-            name="email"
-            placeholder="E-mail"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            disabled={formik.isSubmitting}
-          />
-          {formik.touched.email && formik.errors.email && (
-            <div className="text-red-500 text-sm">{formik.errors.email}</div>
-          )}
-        </div>
-
-        <div className="space-y-2">
-          <Input
-            type="password"
-            name="password"
-            placeholder="Senha"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            disabled={formik.isSubmitting}
-          />
-          {formik.touched.password && formik.errors.password && (
-            <div className="text-red-500 text-sm">{formik.errors.password}</div>
-          )}
-        </div>
-
-        <button
-          type="submit"
-          className="bg-birdblue py-4 rounded-full disabled:opacity-50 w-full text-lg"
-          disabled={formik.isSubmitting || !formik.isValid}
-        >
-          {formik.isSubmitting ? "Enviando..." : "cadastrar"}
-        </button>
-      </form>
-
-      <span className="text-sm text-silver text-center">
-        Já tem uma conta?
-        <Link to="/login" className="text-birdblue">
-          Acesse
-        </Link>
-      </span>
+      </div>
     </div>
   );
 };
