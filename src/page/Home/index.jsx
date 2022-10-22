@@ -1,7 +1,12 @@
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect } from "react";
 import { useFormik } from "formik";
+import * as yup from "yup";
 import axios from "axios";
+
+const validationSchema = yup.object({
+  text: yup.string().required("Digite um texto"),
+});
 
 const TwitterForm = ({ onSuccess }) => {
   const formik = useFormik({
@@ -17,6 +22,7 @@ const TwitterForm = ({ onSuccess }) => {
       form.setFieldValue("text", "");
       onSuccess();
     },
+    validationSchema,
     initialValues: {
       text: "",
     },
@@ -46,6 +52,9 @@ const TwitterForm = ({ onSuccess }) => {
           onBlur={formik.handleBlur}
           disabled={formik.isSubmitting}
         />
+        {formik.touched.text && formik.errors.text && (
+          <div className="text-red-500 text-sm">{formik.errors.text}</div>
+        )}
 
         <div className="flex justify-end items-center space-x-3">
           <span className="text-sm">
