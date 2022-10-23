@@ -1,4 +1,6 @@
-import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 import { Home } from "./Home";
 import { Login } from "./Login";
@@ -30,5 +32,10 @@ export const Router = () => {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <ToastContainer />
+      <RouterProvider router={router} />
+    </>
+  );
 };

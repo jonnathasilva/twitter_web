@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Input = (props) => (
   <input
@@ -24,6 +25,8 @@ export const Login = () => {
         auth: { username: values.email, password: values.password },
         baseURL: import.meta.env.VITE_URL,
         url: "/login",
+      }).catch((err) => {
+        toast.error(err.response.data.message);
       });
 
       localStorage.setItem("token", res.data.accessToken);

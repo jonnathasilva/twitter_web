@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Input = (props) => (
   <input
@@ -21,7 +22,7 @@ export const Signup = () => {
   const navigate = useNavigate();
   const formik = useFormik({
     onSubmit: async (values) => {
-      const res = await axios({
+      const { data } = await axios({
         method: "post",
         data: {
           username: values.username,
@@ -31,9 +32,11 @@ export const Signup = () => {
         },
         baseURL: import.meta.env.VITE_URL,
         url: "/signup",
+      }).catch((err) => {
+        toast.error(err.response.data.message);
       });
 
-      localStorage.setItem("token", res.data.accessToken);
+      localStorage.setItem("token", data.accessToken);
       navigate("/");
     },
     validationSchema,
