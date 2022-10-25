@@ -4,12 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const Input = (props) => (
-  <input
-    {...props}
-    className="w-full bg-transparent p-4 border rounded-xl border-onix text-lg outline-none focus:border-platinum"
-  />
-);
+import { Input } from "~/components";
 
 const validationSchema = yup.object({
   email: yup.string().required("Digite seu E-mail").email("E-mail inválido"),
@@ -20,7 +15,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const formik = useFormik({
     onSubmit: async (values) => {
-      const res = await axios({
+      const { data } = await axios({
         method: "get",
         auth: { username: values.email, password: values.password },
         baseURL: import.meta.env.VITE_URL,
@@ -29,7 +24,7 @@ export const Login = () => {
         toast.error(err.response.data.message);
       });
 
-      localStorage.setItem("token", res.data.accessToken);
+      localStorage.setItem("token", data.accessToken);
       navigate("/");
     },
     validationSchema,
