@@ -15,17 +15,19 @@ export const Login = () => {
   const navigate = useNavigate();
   const formik = useFormik({
     onSubmit: async (values) => {
-      const { data } = await axios({
+      await axios({
         method: "get",
         auth: { username: values.email, password: values.password },
         baseURL: import.meta.env.VITE_URL,
         url: "/login",
-      }).catch((err) => {
-        toast.error(err.response.data.message);
-      });
-
-      localStorage.setItem("token", data.accessToken);
-      navigate("/");
+      })
+        .then(({ data }) => {
+          localStorage.setItem("token", data.accessToken);
+          navigate("/");
+        })
+        .catch((err) => {
+          toast.error(err.response?.data?.message);
+        });
     },
     validationSchema,
     validateOnMount: true,
@@ -90,9 +92,9 @@ export const Login = () => {
 
           <span className="text-sm text-silver text-center">
             Não tem uma conta?{" "}
-            <Link to="/signup" className="text-birdblue">
+            <a href="/signup" className="text-birdblue">
               Inscreva-se
-            </Link>
+            </a>
           </span>
         </div>
       </div>

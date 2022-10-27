@@ -131,9 +131,9 @@ export const Signup = () => {
 
           <span className="text-sm text-silver text-center">
             Já tem uma conta?{" "}
-            <Link to="/login" className="text-birdblue">
+            <a href="/login" className="text-birdblue">
               Acesse
-            </Link>
+            </a>
           </span>
         </div>
       </div>

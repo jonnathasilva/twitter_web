@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 export const NotFound = () => (
   <div className="h-full flex justify-center items-center m-4 space-x-10">
     <div className="hidden md:flex-1 md:flex md:justify-center ">
@@ -15,9 +13,9 @@ export const NotFound = () => (
         inicial.
       </p>
 
-      <Link to="/" className="bg-birdblue p-4 rounded-full text-lg font-bold">
+      <a href="/" className="bg-birdblue p-4 rounded-full text-lg font-bold">
         Página inicial
-      </Link>
+      </a>
     </div>
   </div>
 );

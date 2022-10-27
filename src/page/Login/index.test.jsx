@@ -9,13 +9,12 @@ import { Login } from "./index";
 vi.mock("react-router-dom", () => ({
   ...vi.importActual("react-router-dom"),
   useNavigate: () => vi.fn(),
-  Link: () => vi.fn(),
 }));
 
 vi.mock("axios");
 
 describe("Login", () => {
-  it("Should axios", async () => {
+  it("Should send data to axios", async () => {
     axios = vi.fn(() => Promise.resolve());
 
     const { getByPlaceholderText, getByText } = render(<Login />);
