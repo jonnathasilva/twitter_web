@@ -5,7 +5,7 @@ import "@testing-library/jest-dom";
 import { NotFound } from "./index";
 
 describe("Page not found 404", () => {
-  it("should Redirect home", async () => {
+  it("should redirect home", async () => {
     const { getByText } = render(<NotFound />);
 
     const linkElement = getByText("Página inicial");

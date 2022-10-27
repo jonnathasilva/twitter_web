@@ -39,4 +39,12 @@ describe("Login", () => {
       url: "/login",
     });
   });
+
+  it("should Redirect signup", () => {
+    const { getByRole } = render(<Login />);
+
+    const linkElement = getByRole("link");
+
+    expect(linkElement).toHaveAttribute("href", "/signup");
+  });
 });
